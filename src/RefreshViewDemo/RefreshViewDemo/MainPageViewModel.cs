@@ -30,8 +30,11 @@ namespace RefreshViewDemo
 
         public ObservableCollection<Item> Items { get; private set; }
 
+        
+        // Replaced:
         //public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
 
+        // Replacement:
         private ReactiveCommand<Unit, Unit> _refreshCommand;
 
         public ReactiveCommand<Unit, Unit> RefreshCommand
@@ -47,6 +50,7 @@ namespace RefreshViewDemo
             Items = new ObservableCollection<Item>();
             AddItems();
 
+            // Added
             DefineRefreshCommandCommand();
         }
 
@@ -62,6 +66,8 @@ namespace RefreshViewDemo
             }
         }
 
+
+        //Added
         private void DefineRefreshCommandCommand()
         {
             RefreshCommand = ReactiveCommand.CreateFromTask<Unit>(async x =>
